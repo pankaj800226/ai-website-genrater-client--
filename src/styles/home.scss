@@ -1,0 +1,356 @@
+// /* ===================================================== */
+// /*                    VARIABLES                          */
+// /* ===================================================== */
+
+// :root {
+//   --bg-dark: #0f172a;
+//   --bg-dark-2: #1e293b;
+//   --primary: #7c3aed;
+//   --primary-light: #a78bfa;
+
+//   --glass: rgba(255, 255, 255, 0.05);
+//   --border: rgba(255, 255, 255, 0.08);
+
+//   --text-main: #f8fafc;
+//   --text-soft: #94a3b8;
+// }
+
+// /* ===================================================== */
+// /*                    GLOBAL                             */
+// /* ===================================================== */
+
+// * {
+//   box-sizing: border-box;
+// }
+
+// .home {
+//   display: flex;
+//   flex-direction: column;
+//   height: 100vh;
+//   overflow: hidden;
+
+//   font-family: "Inter", sans-serif;
+//   color: var(--text-main);
+
+//   background: linear-gradient(
+//     135deg,
+//     #0f172a 0%,
+//     #1e1b4b 40%,
+//     #0f172a 100%
+//   );
+// }
+
+// /* ===================================================== */
+// /*                    HEADER                             */
+// /* ===================================================== */
+
+// .header {
+//   height: 60px;
+//   padding: 0 22px;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+
+//   backdrop-filter: blur(22px);
+//   background: rgba(15, 23, 42, 0.75);
+
+//   border-bottom: 1px solid var(--border);
+
+//   position: sticky;
+//   top: 0;
+//   z-index: 50;
+
+//   &__logo {
+//     font-weight: 700;
+//     font-size: 15px;
+//     letter-spacing: 0.4px;
+//   }
+
+//   &__right {
+//     display: flex;
+//     gap: 10px;
+//   }
+// }
+
+// /* ===================================================== */
+// /*                    BUTTONS                            */
+// /* ===================================================== */
+
+// .btn {
+//   padding: 8px 14px;
+//   border-radius: 12px;
+//   border: none;
+//   cursor: pointer;
+
+//   display: flex;
+//   align-items: center;
+//   gap: 6px;
+
+//   font-size: 13px;
+//   font-weight: 600;
+
+//   transition: all 0.25s ease;
+
+//   &:active {
+//     transform: scale(0.96);
+//   }
+
+//   &.primary {
+//     background: linear-gradient(
+//       135deg,
+//       var(--primary),
+//       var(--primary-light)
+//     );
+//     color: white;
+
+//     &:hover {
+//       transform: translateY(-2px);
+//       box-shadow: 0 8px 24px rgba(124, 58, 237, 0.5);
+//     }
+//   }
+
+//   &.glass {
+//     background: var(--glass);
+//     border: 1px solid var(--border);
+//     color: white;
+
+//     &:hover {
+//       background: rgba(255, 255, 255, 0.1);
+//     }
+//   }
+// }
+
+// /* ===================================================== */
+// /*                    MAIN                               */
+// /* ===================================================== */
+
+// .main {
+//   flex: 1;
+//   display: flex;
+//   overflow: hidden;
+// }
+
+// /* ===================================================== */
+// /*                    CHAT                               */
+// /* ===================================================== */
+
+// .chat {
+//   width: 360px;
+//   display: flex;
+//   flex-direction: column;
+
+//   backdrop-filter: blur(18px);
+//   background: var(--glass);
+//   border-right: 1px solid var(--border);
+
+//   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4);
+
+//   &__messages {
+//     flex: 1;
+//     padding: 18px;
+//     overflow-y: auto;
+//   }
+
+//   &__input {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 10px;
+//     padding: 14px;
+//     border-top: 1px solid var(--border);
+
+//     input {
+//       padding: 11px 14px;
+//       border-radius: 12px;
+
+//       background: #0f172a;
+//       border: 1px solid var(--border);
+//       color: white;
+
+//       transition: all 0.2s ease;
+
+//       &:hover {
+//         border-color: rgba(255, 255, 255, 0.18);
+//       }
+
+//       &:focus {
+//         outline: none;
+//         border-color: var(--primary);
+//         box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.35);
+//       }
+//     }
+
+//     button {
+//       background: linear-gradient(
+//         135deg,
+//         var(--primary),
+//         var(--primary-light)
+//       );
+//       color: white;
+//       border: none;
+//       border-radius: 12px;
+//       padding: 11px;
+
+//       cursor: pointer;
+//       transition: 0.25s;
+
+//       &:hover {
+//         transform: translateY(-2px);
+//         box-shadow: 0 8px 22px rgba(124, 58, 237, 0.45);
+//       }
+//     }
+//   }
+// }
+
+// /* ===================================================== */
+// /*                    BUBBLES                            */
+// /* ===================================================== */
+
+// .bubble {
+//   padding: 10px 14px;
+//   border-radius: 14px;
+//   margin-bottom: 10px;
+//   font-size: 14px;
+//   max-width: 80%;
+//   animation: fadeIn 0.25s ease;
+
+//   &.user {
+//     background: linear-gradient(
+//       135deg,
+//       var(--primary),
+//       var(--primary-light)
+//     );
+//     margin-left: auto;
+//   }
+
+//   &.ai {
+//     background: #1e293b;
+//     color: var(--text-soft);
+//   }
+// }
+
+// /* ===================================================== */
+// /*                    WORKSPACE                          */
+// /* ===================================================== */
+
+// .workspace {
+//   flex: 1;
+//   display: flex;
+//   flex-direction: column;
+//   padding: 14px;
+//   gap: 12px;
+// }
+
+// /* editor */
+
+// .editorBox {
+//   border-radius: 16px;
+//   overflow: hidden;
+
+//   background: rgba(0, 0, 0, 0.6);
+//   border: 1px solid var(--border);
+
+//   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+
+//   transition: 0.25s;
+
+//   &:hover {
+//     transform: translateY(-2px);
+//   }
+// }
+
+// .editorHeader {
+//   padding: 8px 12px;
+//   display: flex;
+//   justify-content: space-between;
+//   font-size: 13px;
+//   background: rgba(255, 255, 255, 0.06);
+// }
+
+// /* preview */
+
+// .preview {
+//   flex: 1;
+//   border-radius: 18px;
+//   overflow: hidden;
+//   background: white;
+
+//   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+//   transition: 0.3s;
+
+//   &.fullscreen {
+//     height: 100%;
+//   }
+// }
+
+// /* ===================================================== */
+// /*                    EMPTY                              */
+// /* ===================================================== */
+
+// .empty {
+//   flex: 1;
+//   display: grid;
+//   place-items: center;
+//   text-align: center;
+//   color: var(--text-soft);
+
+//   h2 {
+//     font-size: 28px;
+//     margin-bottom: 8px;
+//   }
+// }
+
+// /* ===================================================== */
+// /*                    SCROLLBAR                          */
+// /* ===================================================== */
+
+// ::-webkit-scrollbar {
+//   width: 6px;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//   background: var(--primary);
+//   border-radius: 8px;
+// }
+
+// /* ===================================================== */
+// /*                    ANIMATIONS                         */
+// /* ===================================================== */
+
+// @keyframes fadeIn {
+//   from {
+//     opacity: 0;
+//     transform: translateY(6px);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+// }
+
+// /* ===================================================== */
+// /*                    RESPONSIVE                         */
+// /* ===================================================== */
+
+// /* tablet */
+// @media (max-width: 1000px) {
+//   .chat {
+//     width: 280px;
+//   }
+// }
+
+// /* mobile */
+// @media (max-width: 768px) {
+//   .main {
+//     flex-direction: column;
+//   }
+
+//   .chat {
+//     width: 100%;
+//     height: 45%;
+//   }
+
+//   .workspace {
+//     height: 55%;
+//   }
+// }
