@@ -25,7 +25,7 @@ const Banner = () => {
         >
           <Sparkles size={10} className="text-indigo-400 animate-pulse" />
           <span className="text-[9px] sm:text-[10px] cursor-pointer font-bold text-indigo-400 uppercase tracking-widest">
-            Aria.ai v1 is Live
+            Aira.ai v1 is Live
           </span>
         </motion.div>
 
@@ -48,7 +48,7 @@ const Banner = () => {
           transition={{ delay: 0.1 }}
           className="max-w-xs sm:max-w-2xl text-slate-400 text-sm sm:text-lg md:text-xl font-medium leading-relaxed mb-10 sm:mb-12"
         >
-          Stop writing boilerplate. Aria turns your natural language into 
+          Stop writing boilerplate. Aira turns your natural language into 
           fully-deployed, production-ready React applications in seconds.
         </motion.p>
 

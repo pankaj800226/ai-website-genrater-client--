@@ -212,6 +212,7 @@ const Ai: React.FC = () => {
             {/* MAIN VIEW */}
             <main className="flex-1 flex flex-col relative">
                 {/* header  */}
+
                 <AiHeader
                     showCodeDialog={showCodeDialog}
                     setShowCodeDialog={setShowCodeDialog}
@@ -251,7 +252,7 @@ const Ai: React.FC = () => {
                                 </div>
 
                                 <h2 className="text-2xl font-bold text-white tracking-tight mb-2">
-                                    Build with Aria<span className="text-indigo-500">.ai</span>
+                                    Build with Aira<span className="text-indigo-500">.ai</span>
                                 </h2>
 
                                 {/* The "Copy Lining" type design */}

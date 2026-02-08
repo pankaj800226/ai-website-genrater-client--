@@ -68,7 +68,7 @@ const Footer = () => {
                 </span>
                 <span className="text-white text-[10px] font-bold uppercase">All Systems Operational</span>
               </div>
-              <p className="text-slate-500 text-[9px]">Aria Engine v1.0.4 - Global Edge</p>
+              <p className="text-slate-500 text-[9px]">Aira Engine v1.0.4 - Global Edge</p>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5">
           <div className="flex items-center gap-6 mb-4 md:mb-0 text-slate-500">
-            <span className="text-[10px] font-medium tracking-wide">© {currentYear} Aria.ai Inc.</span>
+            <span className="text-[10px] font-medium tracking-wide">© {currentYear} Aira.ai Inc.</span>
             <div className="flex items-center gap-2 text-[10px] hover:text-white cursor-pointer transition-all">
               <Globe size={12} />
               <span>English (US)</span>

@@ -40,7 +40,7 @@ const Header = () => {
               <Cpu size={18} className="text-white" />
             </div>
             <span className="text-xl font-black text-white tracking-tighter">
-              Aria<span className="text-indigo-500">.ai</span>
+              Aira<span className="text-indigo-500">.ai</span>
             </span>
           </Link>
 
