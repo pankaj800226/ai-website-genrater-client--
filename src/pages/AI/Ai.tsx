@@ -6,7 +6,7 @@ import parserBabel from "prettier/plugins/babel";
 import parserEstree from "prettier/plugins/estree";
 import parserHtml from "prettier/plugins/html";
 import parserPostcss from "prettier/plugins/postcss";
-import {IoSend } from "react-icons/io5";
+import { IoSend } from "react-icons/io5";
 import { HiSparkles } from 'react-icons/hi'
 import JSZip from "jszip";
 import { Link } from "react-router-dom";
@@ -25,8 +25,8 @@ const Ai: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
     const [showCodeDialog, setShowCodeDialog] = useState<boolean>(false);
+    const [fullView, setFullView] = useState<boolean>(true)
     const chatEndRef = useRef<HTMLDivElement>(null);
-    const [fullView, setFullView] = useState(false)
 
     // Persistence logic
     useEffect(() => {
@@ -107,6 +107,9 @@ const Ai: React.FC = () => {
         return code;
     }, [files]);
 
+
+
+
     const srcDoc = useMemo(() => `
     <!DOCTYPE html><html><head>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -133,81 +136,92 @@ const Ai: React.FC = () => {
     </script></body></html>
   `, [previewCode]);
 
+
+  // new tab open design
+    const openFullView = () => {
+        if (!srcDoc) return
+
+        const blob = new Blob([srcDoc], { type: "text/html" })
+
+        const url = URL.createObjectURL(blob)
+
+        const newTab = window.open(url, "_blank")
+
+        if (newTab) {
+            newTab.onload = () => URL.revokeObjectURL(url)
+        }
+    }
+
     if (error) return <p>{error}</p>
 
     return (
         <div className="flex h-screen bg-[#09090B] text-slate-300 font-sans overflow-hidden">
             {/* SIDEBAR */}
-            <aside className="w-80 bg-[#0C0C0E] border-r border-white/5 flex flex-col z-20">
-                <div className="p-6">
-                    {/* logo name  */}
-                    <Link to={'/'}>
-                        <div className="flex items-center gap-3 group cursor-pointer">
-                            <div
-                                className="
-      w-10 h-10
-      bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500
-      rounded-xl
-      flex items-center justify-center
-      shadow-lg shadow-indigo-500/30
-      group-hover:scale-110
-      transition
-    "
-                            >
-                                <HiSparkles className="text-white text-xl" />
-                            </div>
+            {fullView && (
+                <aside className="w-80 bg-[#0C0C0E] border-r border-white/5 flex flex-col z-20">
+                    <div className="p-6">
+                        {/* logo name  */}
+                        <Link to={'/'}>
+                            <div className="flex items-center gap-3 group cursor-pointer">
+                                <div
+                                    className="w-10 h-10 bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-110 transition"
+                                >
+                                    <HiSparkles className="text-white text-xl" />
+                                </div>
 
-                            {/* Brand Name */}
-                            <span className="font-extrabold text-2xl tracking-tight">
+                                {/* Brand Name */}
+                                <span className="font-extrabold text-2xl tracking-tight">
 
-                                {/* Aira gradient text */}
-                                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                                    Aira
+                                    {/* Aira gradient text */}
+                                    <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                                        Aira
+                                    </span>
+
+                                    {/* small AI tag */}
+                                    <span className="ml-2 text-xs px-2 py-0.5 rounded-md bg-indigo-600/20 text-indigo-400 font not-italic">
+                                        AI
+                                    </span>
+
                                 </span>
-
-                                {/* small AI tag */}
-                                <span className="ml-2 text-xs px-2 py-0.5 rounded-md bg-indigo-600/20 text-indigo-400 font not-italic">
-                                    AI
-                                </span>
-
-                            </span>
-                        </div>
-                    </Link>
-
-                    <input
-                        type="password" placeholder="API Key" value={apikey}
-                        onChange={(e) => setApikey(e.target.value)}
-                        className="w-full  mt-5 px-3 py-2 bg-white/[0.03] border border-white/10 rounded-xl text-[11px] outline-none focus:border-indigo-500/50"
-                    />
-                </div>
-
-
-                <div className="flex-1 overflow-y-auto px-6 space-y-4 no-scrollbar">
-                    {history.map((msg, i) => (
-                        <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                            <div className={`max-w-[90%] px-4 py-3 rounded-2xl text-[11px] ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-tr-none' : 'bg-white/[0.04] border border-white/10'}`}>
-                                {msg.text}
                             </div>
-                        </div>
-                    ))}
-                    {loading && <div className="text-[10px] text-indigo-400 animate-pulse uppercase tracking-widest">🧠 Building...</div>}
-                    <div ref={chatEndRef} />
-                </div>
+                        </Link>
 
-                <div className="p-4">
-                    <div className="relative">
-                        <textarea
-                            placeholder="Let's build..." value={query}
-                            onChange={(e) => setQuery(e.target.value)}
-                            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); generate(); } }}
-                            className="w-full h-24 p-4 pr-12 bg-white/[0.03] border border-white/10 rounded-2xl text-[12px] outline-none focus:border-indigo-500/50 resize-none"
+                        <input
+                            type="password" placeholder="API Key" value={apikey}
+                            onChange={(e) => setApikey(e.target.value)}
+                            className="w-full  mt-5 px-3 py-2 bg-white/[0.03] border border-white/10 rounded-xl text-[11px] outline-none focus:border-indigo-500/50"
                         />
-                        <button onClick={generate} disabled={loading || !query} className="absolute right-3 bottom-3 p-2.5 bg-indigo-600 text-white rounded-xl active:scale-90 transition-all">
-                            <IoSend size={14} />
-                        </button>
                     </div>
-                </div>
-            </aside>
+
+
+                    <div className="flex-1 overflow-y-auto px-6 space-y-4 no-scrollbar">
+                        {history.map((msg, i) => (
+                            <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                                <div className={`max-w-[90%] px-4 py-3 rounded-2xl text-[11px] ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-tr-none' : 'bg-white/[0.04] border border-white/10'}`}>
+                                    {msg.text}
+                                </div>
+                            </div>
+                        ))}
+                        {loading && <div className="text-[10px] text-indigo-400 animate-pulse uppercase tracking-widest">🧠 Building...</div>}
+                        <div ref={chatEndRef} />
+                    </div>
+
+                    <div className="p-4">
+                        <div className="relative">
+                            <textarea
+                                placeholder="Let's build..." value={query}
+                                onChange={(e) => setQuery(e.target.value)}
+                                onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); generate(); } }}
+                                className="w-full h-24 p-4 pr-12 bg-white/[0.03] border border-white/10 rounded-2xl text-[12px] outline-none focus:border-indigo-500/50 resize-none"
+                            />
+                            <button onClick={generate} disabled={loading || !query} className="absolute right-3 bottom-3 p-2.5 bg-indigo-600 text-white rounded-xl active:scale-90 transition-all">
+                                <IoSend size={14} />
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+            )}
+
 
             {/* MAIN VIEW */}
             <main className="flex-1 flex flex-col relative">
@@ -220,6 +234,7 @@ const Ai: React.FC = () => {
                     fullView={fullView}
                     setFullView={setFullView}
                     downloadSource={downloadSource}
+                    openFullView={openFullView}
                 />
 
                 <div className="flex-1 relative bg-[#09090B] overflow-hidden">
